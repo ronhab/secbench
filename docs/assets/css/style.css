@@ -1,0 +1,57 @@
+body{
+  background-color: #080833;
+
+}
+
+* {
+
+    font-family: 'Nunito', sans-serif;
+
+}
+
+.label{
+  background-color: #673ab7;
+  font-size: 100%;
+  margin: 5px;
+}
+
+#intro{
+  padding-top: 18%;
+  justify-content:center;
+  align-items:center;
+  text-align: center;
+
+}
+
+#intro .title{
+  padding-bottom: 2%;
+}
+
+.fa{
+  font-size: 1em;
+
+}
+
+#intro h1{
+  font-size: 4em;
+}
+
+a{
+  color: rgba(255,252,0,1);
+  text-decoration: none;
+
+}
+
+a:hover{
+  color: rgba(255,252,0,0.8);
+  text-decoration: none;
+
+}
+
+#intro h3{
+  padding-bottom: 2%;
+}
+
+#intro p, h3{
+  color: white;
+}
