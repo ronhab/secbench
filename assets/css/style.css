@@ -1,13 +1,148 @@
+
 * {
 
     font-family: 'Nunito', sans-serif;
 
 }
 
-.row{
-  margin-right: 15px;
+.navbar-default .navbar-brand{
+  color: rgba(255,252,0,1);
 }
 
-footer{
-  background-color: blue;
+body, .container-fluid{
+  background-color: #080833;
+}
+
+.container-fluid{
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 35px;
+  padding-left: 35px;
+}
+
+#results {
+  background-color: white;
+}
+
+.navbar-default .navbar-nav>li>a, .navbar-brand, .navbar-nav>li>a{
+  color: rgba(255,252,0,1);
+  text-shadow: none;
+
+}
+
+.navbar-default{
+  border-color: rgb(6, 4, 25);
+}
+
+.label{
+  background-color: #673ab7;
+  font-size: 100%;
+  margin: 5px;
+}
+
+.img-circle {
+    border-radius: 50%;
+    width: 40%;
+
+}
+
+.element{
+  padding: 20px;
+}
+
+#intro, #about, #authors{
+  padding-top: 5%;
+  justify-content:center;
+  align-items:center;
+  text-align: center;
+}
+
+#intro .title{
+  padding-bottom: 2%;
+}
+
+.fa{
+  font-size: 1em;
+
+}
+
+.title h1{
+  padding-bottom:1%;
+}
+
+
+
+#authors span{
+  color: white;
+}
+
+#authors{
+  padding: 50px;
+}
+
+
+
+#intro h1{
+  font-size: 4em;
+}
+
+#authors h3{
+  padding-bottom: 30px;
+  color: rgba(255,252,0,1);
+}
+
+.github-button{
+
+}
+
+#authors p{
+  padding-top: 20px;
+  color: white;
+}
+
+a{
+  color: rgba(255,252,0,1);
+  text-decoration: none;
+
+}
+
+#about .github-button{
+  float: left;
+}
+
+
+.text{
+  padding-left: 15%;
+  padding-right: 15%;
+  color: white;
+  text-align: justify;
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
+a:hover{
+  color: rgba(255,252,0,0.8);
+  text-decoration: none;
+
+}
+
+#intro h3{
+  padding-bottom: 2%;
+}
+
+#intro p, h3{
+  color: white;
+}
+
+.footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: rgba(256,256,256,0.5);
+  text-align: center;
+}
+
+.footer p{
+  color:white;
 }
