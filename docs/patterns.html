@@ -3,8 +3,7 @@
   <head>
     <title>Secbench</title>
 <meta charset="utf-8">
-<meta name="description" content="Study about the performance and coverage of open-source static analysis tools (Infer, find-sec-bugs, symbolic pathfinder, WAP, brakeman, dawnscanner and more) when scanning for real security vulnerabilities mined from source code hosting websites like GitHub and Bitbucket.
-">
+<meta name="description" content="Study about the performance and coverage of open-source static analysis tools when scanning for real security vulnerabilities mined from GitHub.">
 <meta name="author"      content="Sofia Reis & Rui Maranhão">
     <!-- user-scalable=no does not allow zoom, just allows the user to scroll--->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -138,7 +137,7 @@
 
       <div id="about">
         <div class="text">
-          <a href='https://regexper.com/#((path%7Cdir.*)%20trav%7C(dot-dot-slash%7Cdir.*%20trav%7Cdir.*%20climbing%7Cbacktracking).*(attack%7Cvuln%7Cissue%7Cproblem))' >- Path/Directory Traversal</a>
+          <a href='https://regexper.com/#((path%7Cdir.*)%20trav%7C(dot-dot-slash%7Cdir.*%20trav%7Cdir.*%20climbing%7Cbacktracking).*(attack%7Cvuln%7Cissue%7Cproblem))' >- Path/Directory Traversal (pathtrav)</a>
 
         </div>
           <img src="img/pathtrav.svg" />
@@ -146,7 +145,7 @@
 
       <div id="about">
         <div class="text">
-          <a href='https://regexper.com/#(dos%20%7C((distributed)%3F%20denial(-%7C%20)%3Fof(-%7C%20)%3Fservice)%7Cddos%20%7Cdeadlocks)' >- Distributed Denial-of-Service/Denial-of-Service</a>
+          <a href='https://regexper.com/#(dos%20%7C((distributed)%3F%20denial(-%7C%20)%3Fof(-%7C%20)%3Fservice)%7Cddos%20%7Cdeadlocks)' >- Distributed Denial-of-Service/Denial-of-Service (dos)</a>
 
         </div>
           <img src="img/dos.svg" />
@@ -154,7 +153,7 @@
 
       <div id="about">
         <div class="text">
-          <a href='https://regexper.com/#(fix%7Crem%7Cpatch%7Cfound%7Cprevent)%20mem.*%20leak%7Cmem.*%20leak%20(fix%7Crem%7Cpatch%7Cfound%7Cprevent)' >- Memory Leaks</a>
+          <a href='https://regexper.com/#(fix%7Crem%7Cpatch%7Cfound%7Cprevent)%20mem.*%20leak%7Cmem.*%20leak%20(fix%7Crem%7Cpatch%7Cfound%7Cprevent)' >- Memory Leaks (ml)</a>
 
         </div>
           <img src="img/ml.svg" />
@@ -162,7 +161,7 @@
 
       <div id="about">
         <div class="text">
-          <a href='https://regexper.com/#(fix%7Crem%7Cpatch%7Cfound%7Cprevent).*context%20leak%7Ccontext%20leak.*(fix%7Crem%7Cpatch%7Cfound%7Cprevent)' >- Context Leaks</a>
+          <a href='https://regexper.com/#(fix%7Crem%7Cpatch%7Cfound%7Cprevent).*context%20leak%7Ccontext%20leak.*(fix%7Crem%7Cpatch%7Cfound%7Cprevent)' >- Context Leaks (cl)</a>
 
         </div>
           <img src="img/cl.svg" />
@@ -170,7 +169,7 @@
 
       <div id="about">
         <div class="text">
-          <a href='https://regexper.com/#(fix%7Crem%7Cpatch%7Cfound%7Cprevent).*%20resource.*%20leaks%7Cresource.*%20leaks%20(fix%7Crem%7Cpatch%7Cfound%7Cprevent)' >- Resource Leaks</a>
+          <a href='https://regexper.com/#(fix%7Crem%7Cpatch%7Cfound%7Cprevent).*%20resource.*%20leaks%7Cresource.*%20leaks%20(fix%7Crem%7Cpatch%7Cfound%7Cprevent)' >- Resource Leaks (rl)</a>
 
         </div>
           <img src="img/rl.svg" />
@@ -178,7 +177,7 @@
 
       <div id="about">
         <div class="text">
-          <a href='https://regexper.com/#(fix%7Crem%7Cpatch%7Cfound%7Cprevent).*%20overflow%7Coverflow.*%20(fix%7Crem%7Cpatch%7Cfound%7Cprevent)' >- Overflow</a>
+          <a href='https://regexper.com/#(fix%7Crem%7Cpatch%7Cfound%7Cprevent).*%20overflow%7Coverflow.*%20(fix%7Crem%7Cpatch%7Cfound%7Cprevent)' >- Overflow (over)</a>
 
         </div>
           <img src="img/over.svg" />
@@ -186,7 +185,7 @@
 
       <div id="about">
         <div class="text">
-          <a href='https://regexper.com/#(fix%7Cfound%7Cprevent%7Cprotect%7Cpatch).*sec.*(bug%7Cvulnerab%7Cproblem%7Cdefect%7Cwarning%7Cissue%7Cweak%7Cattack%7Cflaw%7Cfault%7Cerror)%7Csec.*%20(bug%7Cvulnerab%7Cproblem%7Cdefect%7Cwarning%7Cissue%7Cweak%7Cattack%7Cflaw%7Cfault%7Cerror).*(fix%7Cfound%7Cprevent%7Cprotect%7Cpatch)%7Cvulnerab%7Cattack%7Ccve-%7Cnvd-%7Ccwe-' >- Miscellaneous</a>
+          <a href='https://regexper.com/#(fix%7Cfound%7Cprevent%7Cprotect%7Cpatch).*sec.*(bug%7Cvulnerab%7Cproblem%7Cdefect%7Cwarning%7Cissue%7Cweak%7Cattack%7Cflaw%7Cfault%7Cerror)%7Csec.*%20(bug%7Cvulnerab%7Cproblem%7Cdefect%7Cwarning%7Cissue%7Cweak%7Cattack%7Cflaw%7Cfault%7Cerror).*(fix%7Cfound%7Cprevent%7Cprotect%7Cpatch)%7Cvulnerab%7Cattack%7Ccve-%7Cnvd-%7Ccwe-' >- Miscellaneous (misc)</a>
 
         </div>
           <img src="img/misc.svg" />
