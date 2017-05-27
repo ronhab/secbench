@@ -21,7 +21,7 @@ def mined_projs():
 
 @app.route('/benchmark/vulns',  methods=['GET'])
 def no_vulns():
-    return jsonify(get_no_vulns());
+    return jsonify(get_no_vulns_from_mined_repos());
 
 @app.route('/benchmark/vulnsmined',  methods=['GET'])
 def vulns_mined():
