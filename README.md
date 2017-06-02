@@ -8,7 +8,7 @@ Secbench is a database of real security vulnerabilities mined from Github. We mi
 ## Versions
 
 * [v.0.0.1](https://console.cloud.google.com/storage/browser/v0_0_1/?project=secbench-161618)
-Patterns: TOP 10 OSWAP 2017, Memory Leak, Overflow, Resourse Leaks, Denial-of-Service, Path Traversal, Miscellaneous>
+Patterns: TOP 10 OSWAP 2017, Memory Leak, Overflow, Resourse Leaks, Denial-of-Service, Path Traversal, Miscellaneous
 
 
 ## License
