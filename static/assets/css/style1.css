@@ -32,9 +32,11 @@
 
 
 .bar {
-  fill: #9c27b0;
+  fill: #2741b0;
   fill-opacity: .9;
 }
+
+
 
 .x.axis path {
   display: none;
@@ -211,6 +213,7 @@ a:hover{
   padding: 1rem;
   background-color: #673ab7;
   text-align: center;
+  margin-top: 20px;
 }
 
 .footer p{

@@ -1,4 +1,5 @@
 from connect import connect_to_db
+import operator
 
 def get_vulns_by_class():
     r = connect_to_db('redis.json');
@@ -36,6 +37,7 @@ def get_vulns_by_class3():
     vulns = pip.execute()
     RESULTS = {'benchmark':[]}
     rest = {};
+    Y = 0;
     for vuln in vulns[0]:
         pip = r.pipeline()
         pip.keys(pattern='commit:*:*:%s'%vuln)
@@ -57,18 +59,24 @@ def get_vulns_by_class3():
                 if cm[1] not in rest:
                     rest[cm[1]] = 0;
                 rest[cm[1]] +=1;
+                Y+=1;
             elif(cm[0]=='Y' and cm[2] == 'Y'):
                 rest[vuln] += 1;
+                Y+=1;
 
     rest['sde'] += rest['sha1']
     del rest['sha1']
 
-    order = ['injec', 'auth', 'xss', 'bac', 'smis', 'sde', 'iap', 'csrf', 'ucwkv', 'upapi', 'ml', 'cl', 'rl', 'over', 'pathtrav', 'dos', 'misc']
+    order = ['injec', 'auth', 'xss', 'bac', 'smis', 'sde', 'iap', 'csrf', 'ucwkv', 'upapi', 'ml', 'rl', 'over', 'pathtrav', 'dos', 'misc']
 
+    count = 0;
     for k in order:
+        per = round((float(rest[k])/Y)*100, 1);
+        count+=per;
         RESULTS['benchmark'].append({
             'class': k,
-            'no': rest[k]
+            'no': rest[k],
+            'per': per
         })
     return RESULTS
 
@@ -97,8 +105,6 @@ def get_vulns_by_class_mined():
             'class': vuln,
             'no': Y
         })
-
-    print(Z)
     return RESULTS
 
 def get_vulns_by_lang():
@@ -124,14 +130,162 @@ def get_vulns_by_lang():
                 dic[cm[1]] += 1;
             Y+=1;
 
-    for key,value in dic.items():
+    others = 0;
+    sorted_x = sorted(dic.items(), key=operator.itemgetter(1),reverse=True)
+    print(sorted_x)
+    for i in sorted_x:
+        per = round((float(i[1])/Y)*100, 1);
+        #if i[0] == 'others':
+        #    others = i[1];
+        #else:
         RESULTS['benchbylang'].append({
-            'lang': key,
-            'no': value
-        })
-    print(Y)
+                'lang': i[0],
+                'no': i[1],
+                'per':per
+            })
+
+    #RESULTS['benchbylang'].append({
+    #    'lang': 'others',
+    #    'no': others,
+    #    'per':round((float(others)/Y)*100, 1)
+    #})
     return RESULTS
 
+
+def get_CVES():
+    r = connect_to_db('redis.json');
+    RESULTS = {'cves': []}
+    pip = r.pipeline()
+    pip.keys(pattern='commit:*:*:*')
+    commit = pip.execute()
+    Y = 0; Z=0;
+    dic = {};
+    CVE = [];
+
+    for c in commit[0]:
+        cm_info = c.split(':')
+        pip = r.pipeline()
+        pip.hget(c,'vuln?')
+        pip.hget(c,'lang')
+        pip.hget(c,'code')
+        pip.hget('repo:%s:%s:n'%(cm_info[1], cm_info[2]), 'mined')
+        cm = pip.execute()
+
+        if(cm[0]=='Y' and cm[3] == 'Y' and cm[2] is not None):
+            #print(cm[2])
+            if cm[2] not in CVE and cm[2]!='':
+                CVE.append(cm[2])
+                Y+=1;
+            if cm[2]!='':
+                Z+=1;
+    print(CVE)
+
+get_CVES();
+
+def get_lang():
+    r = connect_to_db('redis.json');
+    pip = r.pipeline()
+    pip.keys(pattern='repo:*:*:n')
+    projs = pip.execute()
+    RESULTS = {'languages': []}
+    dic = {}
+    Y = 0;
+    for p in projs[0]:
+        pinf = p.split(':')
+        pip = r.pipeline()
+        pip.hget(p,'mined')
+        pip.keys(pattern='lang:%s:%s'%(pinf[1],pinf[2]))
+        p_info = pip.execute()
+
+        if(p_info[0] == 'Y'):
+            pip = r.pipeline()
+            pip.hgetall('lang:%s:%s'%(pinf[1],pinf[2]))
+            lang = pip.execute()
+            print(lang)
+            Y+=1;
+            print(p)
+            print(lang)
+            for i,v in lang[0].iteritems():
+                if i not in dic:
+                    dic[i] = 0;
+                dic[i]+=int(v)
+                Y+=int(v)
+
+    for key,value in dic.items():
+            per = round((float(value)/Y)*100, 2);
+            RESULTS['languages'].append({
+                'lang': key,
+                'no': value,
+                'per': per
+            })
+
+    print(RESULTS)
+    print(Y)
+
+
+    return RESULTS
+
+get_lang();
+
+def get_projs_stats():
+    r = connect_to_db('redis.json');
+    RESULTS = {'stats': []}
+    pip = r.pipeline()
+    pip.keys(pattern='repo:*:*:n')
+    projs = pip.execute()
+    Y = 0; Z=0;
+    dic = {};
+    CVE = [];
+    final_found_vulns = 0;
+    final_no_vulns = 0;
+    found_vulns=0;
+    no_vulns= 0;
+    mined_projs = [];
+    for p in projs[0]:
+        pip = r.pipeline()
+        pip.hget(p,'mined')
+        cm = pip.execute()
+
+        if(cm[0]=='Y'):
+            cm_info = p.split(':')
+            pip = r.pipeline()
+            pip.keys(pattern='commit:%s:%s:*'%(cm_info[1], cm_info[2]))
+            commits = pip.execute()
+            n_vuln=0;
+            for c in commits[0]:
+                if r.hget(c, 'vuln?') == 'Y':
+                    n_vuln+=1;
+
+
+
+            if len(commits[0]) > 0:
+                mined_projs.append(p);
+
+
+    print(mined_projs)
+    for p in mined_projs:
+        proj_info = p.split(':');
+        pip = r.pipeline()
+        pip.keys(pattern='commit:%s:%s:*'%(proj_info[1], proj_info[2]))
+        commits = pip.execute()
+        n_vuln=0;
+        for c in commits[0]:
+            if r.hget(c, 'vuln?') == 'Y':
+                n_vuln+=1;
+
+        if(n_vuln > 0):
+            final_found_vulns+=1;
+        else:
+            final_no_vulns+=1;
+
+
+    print(final_found_vulns)
+    print(final_no_vulns)
+            #RESULTS['stats'].append({
+            #    'repos': ('%s_%s')%(cm_info[1],cm_info[2]),
+            #    'no': len(commits[0])
+            #})
+get_projs_stats();
 def get_vulns_by_year():
     r = connect_to_db('redis.json');
     RESULTS = {'benchbyyear': []}
@@ -139,6 +293,7 @@ def get_vulns_by_year():
     pip.keys(pattern='commit:*:*:*')
     commit = pip.execute()
     dic = {};
+    Y=0;
     for c in commit[0]:
         cm_info = c.split(':')
         pip = r.pipeline()
@@ -152,12 +307,78 @@ def get_vulns_by_year():
                 dic[cm[1]] = 1;
             else:
                 dic[cm[1]] += 1;
+            Y+=1;
 
-    for key,value in dic.items():
+    sorted_x = sorted(dic.items(), key=operator.itemgetter(0))
+
+    for i in sorted_x:
+        per = round((float(i[1])/Y)*100, 1);
         RESULTS['benchbyyear'].append({
-            'year': key,
-            'no': value
+            'year': i[0],
+            'no': i[1],
+            'per': per
         })
+    return RESULTS
+
+def get_commits_vulns():
+    r = connect_to_db('redis.json');
+    pip = r.pipeline()
+    pip.keys(pattern='repo:*:*:n')
+    projs = pip.execute()
+    RESULTS = {'corr1': []}
+
+    for p in projs[0]:
+        Y = 0;
+        pinf = p.split(':')
+        pip = r.pipeline()
+        pip.hget(p,'mined')
+        pip.hget(p,'commits')
+        pip.keys(pattern='commit:%s:%s:*'%(pinf[1],pinf[2]))
+        p_info = pip.execute()
+
+        if(p_info[0] == 'Y'):
+            for c in p_info[2]:
+                v = r.hget(c, 'vuln?')
+                if (v == 'Y'):
+                    Y+=1;
+            RESULTS['corr1'].append({
+                'commits': int(p_info[1]),
+                'vulns': Y,
+                'all':len(p_info[2]),
+                'id':('%s_%s'%(pinf[1],pinf[2]))
+                })
+    #print(RESULTS)
+    return RESULTS
+
+def get_commits_years_dev():
+    r = connect_to_db('redis.json');
+    pip = r.pipeline()
+    pip.keys(pattern='repo:*:*:n')
+    projs = pip.execute()
+    RESULTS = {'corr2': []}
+
+    for p in projs[0]:
+        Y = 0;
+        pinf = p.split(':')
+        pip = r.pipeline()
+        pip.hget(p,'mined')
+        pip.hget(p,'dev_time')
+        pip.keys(pattern='commit:%s:%s:*'%(pinf[1],pinf[2]))
+        p_info = pip.execute()
+
+
+        if(p_info[0] == 'Y'):
+            year = float(p_info[1])/525600;
+            for c in p_info[2]:
+                v = r.hget(c, 'vuln?')
+                if (v == 'Y'):
+                    Y+=1;
+
+            RESULTS['corr2'].append({
+                'time': year,
+                'all':len(p_info[2]),
+                'id':('%s_%s'%(pinf[1],pinf[2]))
+                })
     return RESULTS
 
 def get_no_mined_projects():
@@ -175,7 +396,6 @@ def get_no_mined_projects():
         pip.hget(c,'mined')
         pip.hget(c,'commits')
         cm = pip.execute()
-        print(cm)
         if(cm[0]=='Y' and cm[1] > '1'):
             Y+=1;
             C+=int(cm[1]);
