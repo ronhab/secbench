@@ -2,7 +2,7 @@
 
 Secbench is a database of real security vulnerabilities mined from Github. We mined 238 projects - accounting to more than 1M commits - for 16 different vulnerability [patterns](https://tqrg.github.io/secbench/patterns.html), yielding a Database with 602 real security vulnerabilities. 
 
-![alt](https://github.com/TQRG/secbench/blob/master/static/images/methodology.png?raw=true)
+<!--![alt](https://github.com/TQRG/secbench/blob/master/static/images/methodology.png?raw=true)-->
 
 ## Versions
 
