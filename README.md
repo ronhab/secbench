@@ -6,13 +6,15 @@ Our main goal with this approach is the identification and extraction of real se
 
 ![alt](https://github.com/TQRG/secbench/blob/master/static/images/methodology.png?raw=true)
 
-##### Test Cases Structure
+### Test Cases Structure
 
 Every time a pattern is found in a commit by the mining tool, a test case is created. The test case has $3$ folders: Vfix with the non-vulnerable source code from the commit where the pattern was caught (child), Vvul with the vulnerable source code from the previous commit (parent) which we consider the real vulnerability; and, Vdiff with two folders, added and deleted, where the added lines to fix the vulnerability and the deleted lines that represent the security vulnerability are stored (as we can see in the figure below).
 
 ![alt](https://github.com/TQRG/secbench/blob/master/static/images/test_case.png?raw=true)
 
-##### Database
+### Database
+
+The database is available 13 different languages: Ruby, Java, Scala, Php, C, Objc, Objc++, Python, Swift, Groovy, C++, JavaScript, and others (which include xml).
 
 * A1 - injec (97)
 
@@ -91,8 +93,6 @@ Every time a pattern is found in a commit by the mining tool, a test case is cre
 | Language | Ruby | Objc++ | C | Python | Php | C++ | Java | Objc |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | #vulns | 8 | 1 | 18 | 1 | 2 | 5 | 1 | 2 |
-
-
 
 * Others - pathtrav (15)
 
