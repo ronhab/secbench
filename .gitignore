@@ -4,3 +4,5 @@ secbench_info.pyc
 secbench_info.pyc
 
 *.pyc
+
+*.json
