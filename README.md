@@ -31,7 +31,10 @@ Every time a pattern is found in a commit by the mining tool, a test case is cre
 
 # Publications
 
-"SECBENCH: A Database of Real Security Vulnerabilities" Sofia Reis & Rui Abreu, SECSE 2017 [Paper](https://github.com/TQRG/secbench/raw/master/papers/secse/paper.pdf), [Presentation](https://github.com/TQRG/secbench/raw/master/papers/secse/presentation.pdf)
+"SECBENCH: A Database of Real Security Vulnerabilities" Sofia Reis & Rui Abreu, SECSE 2017, Oslo, Norway [[Paper]](https://github.com/TQRG/secbench/raw/master/papers/secse/paper.pdf) and [[Presentation]](https://github.com/TQRG/secbench/raw/master/papers/secse/presentation.pdf)
+
+"Using Github to Create a Dataset of Natural Occuring Vulnerabilities" Sofia Reis & Rui Abreu, DX 2017, Brescia, Italy [[Abstract]](https://github.com/TQRG/secbench/raw/master/papers/dx17/abstract.pdf), [[Poster]](https://github.com/TQRG/secbench/raw/master/papers/dx17/poster.pdf) and [[Patterns]](https://github.com/TQRG/secbench/raw/master/papers/dx17/patterns.pdf)
+
 
 # License
 MIT License, see [license.txt](https://github.com/TQRG/secbench/blob/master/license.txt) for more information.
