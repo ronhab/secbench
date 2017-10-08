@@ -29,7 +29,9 @@ Every time a pattern is found in a commit by the mining tool, a test case is cre
 | #vulns | 77 | 15 | 38 | 15 | 4 | 72 | 221 |
 
 
+# Publications
 
+"SECBENCH: A Database of Real Security Vulnerabilities" Sofia Reis & Rui Abreu, SECSE 2017 [Paper](https://github.com/TQRG/secbench/raw/master/papers/secse/paper.pdf), [Presentation](https://github.com/TQRG/secbench/raw/master/papers/secse/presentation.pdf)
 
 # License
 MIT License, see [license.txt](https://github.com/TQRG/secbench/blob/master/license.txt) for more information.
