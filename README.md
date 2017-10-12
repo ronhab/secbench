@@ -1,6 +1,6 @@
 # Secbench
 
-:exclamation::exclamation: ** IMPROVED VERSION UNDER CONSTRUCTION. PREPARING NEXT RELEASE WITH MORE VULNERABILITIES. **
+:exclamation::exclamation: **IMPROVED VERSION UNDER CONSTRUCTION. PREPARING NEXT RELEASE WITH MORE VULNERABILITIES.**
 
 Secbench is a database of real security vulnerabilities mined from Github. We mined 238 projects - accounting to more than 1M commits - for 16 different vulnerability [patterns](https://tqrg.github.io/secbench/patterns.html), yielding a database with 602 real security vulnerabilities. 
 
