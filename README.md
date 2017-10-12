@@ -1,6 +1,8 @@
 # Secbench
 
-:exclamation::exclamation: **IMPROVED VERSION UNDER CONSTRUCTION. PREPARING NEXT RELEASE CONTAINING NEW VULNERABILITIES.** :exclamation::exclamation:
+:exclamation: **IMPROVED VERSION UNDER CONSTRUCTION. PREPARING NEXT RELEASE CONTAINING NEW VULNERABILITIES.** :exclamation:
+
+
 Secbench is a database of real security vulnerabilities mined from Github. We mined 238 projects - accounting to more than 1M commits - for 16 different vulnerability [patterns](https://tqrg.github.io/secbench/patterns.html), yielding a database with 602 real security vulnerabilities. 
 
 Our main goal with this approach is the identification and extraction of real security vulnerabilities fixed/patched by real developers. We started with the identification of several security patterns to use on our [mining tool](https://github.com/TQRG/secbench-mining-tool). To understand what would be the most popular patterns on Github, we based ourselves on Github searches and Top 10 OSWAP 2017. Thereafter, we kept adding more patterns and we still have place for many more. The patterns were used for mining commits' messages. As we can see on the figure below, after saving the data there is an evaluation process to validate whether the caught sample is really the fix of a security vulnerability or not. If approved, the sample's information is updated on the database and, consequently, the test case is added to the final database.
